@@ -10,9 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var user_1 = require("./user");
+var user_service_1 = require("./user.service");
 var UserComponent = (function () {
-    function UserComponent() {
+    function UserComponent(_userService) {
+        this._userService = _userService;
+        // this.userService = userService;
     }
+    UserComponent.prototype.setSelectedUser = function (user) {
+        this._userService.setSelectedUser(user);
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', user_1.User)
@@ -20,9 +26,9 @@ var UserComponent = (function () {
     UserComponent = __decorate([
         core_1.Component({
             selector: 'user-component',
-            template: "\n    <div>{{user.name}}</div>\n    "
+            template: "\n    <div (click)=\"setSelectedUser(user)\">{{user.name}}</div>\n    "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [user_service_1.UserService])
     ], UserComponent);
     return UserComponent;
 }());

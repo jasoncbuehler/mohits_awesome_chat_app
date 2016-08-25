@@ -1,11 +1,11 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
-// import {HomeRoutes} from './home/index';
 import {TodolistRoutes} from './todolist/index';
 import {SimplebindRoutes} from './simplebind/index';
+import {UserComponent} from "./user/user.component";
 
 const routes: RouterConfig = [
-  // ...HomeRoutes,
+  { path: '', component: UserComponent },
   ...TodolistRoutes,
   ...SimplebindRoutes
 ];

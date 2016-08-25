@@ -19,6 +19,10 @@ var UserService = (function () {
             new user_1.User("Randy")
         ];
     }
+    UserService.prototype.setSelectedUser = function (user) {
+        this.selectedUser = user;
+        console.log("user is selected " + user.name);
+    };
     UserService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
