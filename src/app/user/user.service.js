@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,16 +7,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var user_1 = require('./user');
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
 var UserService = (function () {
-    function UserService() {
+    // json located at:
+    // https://api.myjson.com/bins/31o4f
+    function UserService(_http) {
+        var _this = this;
+        this.loadingUsers = true;
         // TODO - pull this list from file or ultimately myjson
-        this.users = [
-            new user_1.User("Larry"),
-            new user_1.User("Curly"),
-            new user_1.User("Randy")
-        ];
+        _http.request('https://api.myjson.com/bins/31o4f')
+            .subscribe(function (res) {
+            _this.users = res.json();
+            _this.selectedUser = _this.users[0];
+            _this.loadingUsers = false;
+        });
     }
     UserService.prototype.setSelectedUser = function (user) {
         this.selectedUser = user;
@@ -25,9 +29,9 @@ var UserService = (function () {
     };
     UserService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], UserService);
     return UserService;
-}());
+})();
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

@@ -1,4 +1,3 @@
-"use strict";
 var user_1 = require('../user/user');
 var chat_1 = require("./chat");
 describe('Chat', function () {

@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -14,10 +13,15 @@ var user_service_1 = require("./user.service");
 var UserComponent = (function () {
     function UserComponent(_userService) {
         this._userService = _userService;
-        // this.userService = userService;
     }
     UserComponent.prototype.setSelectedUser = function (user) {
         this._userService.setSelectedUser(user);
+    };
+    UserComponent.prototype.isSelected = function () {
+        if (this.user === this._userService.selectedUser) {
+            return "selected";
+        }
+        return "";
     };
     __decorate([
         core_1.Input(), 
@@ -26,11 +30,11 @@ var UserComponent = (function () {
     UserComponent = __decorate([
         core_1.Component({
             selector: 'user-component',
-            template: "\n    <div (click)=\"setSelectedUser(user)\">{{user.name}}</div>\n    "
+            template: "\n    <div (click)=\"setSelectedUser(user)\" class=\"listed-user {{isSelected()}}\">{{user.name}}</div>\n    "
         }), 
         __metadata('design:paramtypes', [user_service_1.UserService])
     ], UserComponent);
     return UserComponent;
-}());
+})();
 exports.UserComponent = UserComponent;
 //# sourceMappingURL=user.component.js.map

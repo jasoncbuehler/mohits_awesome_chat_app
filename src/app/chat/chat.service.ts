@@ -8,9 +8,10 @@ export class ChatService {
 
     constructor() {
         // TODO - pull this list from file or ultimately myjson
-        this.chats = [
-            new Chat(new User("Yuck"), "ERMEHGERD WTF"),
-            new Chat(new User("Ew"), "Ya, this is groooosssss")
-        ];
+        this.chats = [];
+    }
+
+    addChat(chat: string, user: User): void {
+        this.chats.push(new Chat(user, chat));
     }
 }
