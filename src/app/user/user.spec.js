@@ -1,3 +1,4 @@
+"use strict";
 var user_1 = require('./user');
 describe('User', function () {
     describe('#constructor', function () {

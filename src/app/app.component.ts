@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 import {NavbarComponent} from './navbar/navbar.component';
 import {CONSTANTS} from './shared';
-import {User} from "./user/user";
 import {UserComponent} from "./user/user.component";
 import {UserService} from "./user/user.service";
 import {ChatComponent} from "./chat/chat.component";
