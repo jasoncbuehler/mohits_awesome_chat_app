@@ -16,7 +16,7 @@ export class UserComponent {
 
     constructor(private _userService: UserService, private _chatService: ChatService) {
         _userService.userInputChange.subscribe((event) => {
-            if(this.isSelected() === "selected") {
+            if (this.isSelected() === "selected") {
                 this.isTyping = "typing";
             }
         });

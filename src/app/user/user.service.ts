@@ -14,19 +14,21 @@ export class UserService {
     // json located at:
     // https://api.myjson.com/bins/31o4f
 
-    constructor(_http: Http) {
+    constructor(private _http: Http) {
+        this._http = _http;
         this.loadingUsers = true;
-        // TODO - pull this list from file or ultimately myjson
-        _http.request('https://api.myjson.com/bins/31o4f')
+    }
+
+    setSelectedUser(user: User): void {
+        this.selectedUser = user;
+    }
+
+    populateUsers() {
+        this._http.request('https://api.myjson.com/bins/31o4f')
             .subscribe((res: Response) => {
                 this.users = res.json();
                 this.selectedUser = this.users[0];
                 this.loadingUsers = false;
             });
-    }
-
-    setSelectedUser(user: User): void {
-        this.selectedUser = user;
-        console.log(`user is selected ${user.name}`);
     }
 }

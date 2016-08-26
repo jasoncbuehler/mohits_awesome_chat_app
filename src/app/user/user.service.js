@@ -13,20 +13,22 @@ var UserService = (function () {
     // json located at:
     // https://api.myjson.com/bins/31o4f
     function UserService(_http) {
-        var _this = this;
+        this._http = _http;
         this.userInputChange = new core_1.EventEmitter();
+        this._http = _http;
         this.loadingUsers = true;
-        // TODO - pull this list from file or ultimately myjson
-        _http.request('https://api.myjson.com/bins/31o4f')
+    }
+    UserService.prototype.setSelectedUser = function (user) {
+        this.selectedUser = user;
+    };
+    UserService.prototype.populateUsers = function () {
+        var _this = this;
+        this._http.request('https://api.myjson.com/bins/31o4f')
             .subscribe(function (res) {
             _this.users = res.json();
             _this.selectedUser = _this.users[0];
             _this.loadingUsers = false;
         });
-    }
-    UserService.prototype.setSelectedUser = function (user) {
-        this.selectedUser = user;
-        console.log("user is selected " + user.name);
     };
     UserService = __decorate([
         core_1.Injectable(), 
