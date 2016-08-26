@@ -10,8 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var UserService = (function () {
-    // json located at:
-    // https://api.myjson.com/bins/31o4f
     function UserService(_http) {
         this._http = _http;
         this.userInputChange = new core_1.EventEmitter();

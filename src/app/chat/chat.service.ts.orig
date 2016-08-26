@@ -1,0 +1,45 @@
+import { Chat } from './chat';
+import {Injectable, EventEmitter} from '@angular/core';
+import {User} from "../user/user";
+import {UserService} from "../user/user.service";
+
+@Injectable()
+export class ChatService {
+    chats: Chat[];
+<<<<<<< HEAD
+    currentChat: Chat;
+    chatCreated: EventEmitter<any> = new EventEmitter();
+=======
+    isTyping: boolean;
+>>>>>>> 6a7fed1eecab9b45969991cbec23f43a3e8369d6
+
+    constructor(private _userService: UserService) {
+        this.chats = [];
+<<<<<<< HEAD
+        _userService.userInputChange.subscribe(() => {
+            console.log("Event happening");
+            if (this.chats.length === 0 || this.chats.length >= 1 && this.chats[this.chats.length - 1].text !== "typing...") {
+                this.addChat("typing...", _userService.selectedUser);
+            }
+        });
+        this.chatCreated.subscribe((text) => {
+            this.chats[this.chats.length - 1].text = text;
+        });
+=======
+        this.isTyping = false;
+>>>>>>> 6a7fed1eecab9b45969991cbec23f43a3e8369d6
+    }
+
+    addChat(chat: string, user: User): void {
+        this.chats.push(new Chat(user, chat));
+    }
+
+<<<<<<< HEAD
+    setCurrentChat(chat: Chat) {
+        this.currentChat = chat;
+=======
+    setIsTyping(typing: boolean): void {
+        this.isTyping = typing;
+>>>>>>> 6a7fed1eecab9b45969991cbec23f43a3e8369d6
+    }
+}

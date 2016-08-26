@@ -1,0 +1,43 @@
+import { Component, Input } from '@angular/core';
+import { User } from "./user";
+import {UserService} from "./user.service";
+import {ChatService} from "../chat/chat.service";
+
+@Component({
+    selector: 'user-component',
+    template: `
+<<<<<<< HEAD
+    <div (click)="setSelectedUser(user)" class="listed-user {{isSelected()}}">{{user.name}} <i>{{isTyping}}</i></div>
+=======
+    <div (click)="setSelectedUser(user)" class="listed-user {{isSelected()}}">
+        {{user.name}}
+        <div *ngIf="_userService.isTyping && isSelected()">is typing</div>
+    </div>
+>>>>>>> 6a7fed1eecab9b45969991cbec23f43a3e8369d6
+    `
+})
+
+export class UserComponent {
+    @Input() user: User;
+    @Input() isTyping: string;
+
+    constructor(private _userService: UserService, private _chatService: ChatService) {
+        _userService.userInputChange.subscribe((event) => {
+            if (this.isSelected() === "selected") {
+                this.isTyping = "typing";
+            }
+        });
+        _chatService.chatCreated.subscribe(() => this.isTyping = "");
+    }
+
+    setSelectedUser(user: User): void {
+        this._userService.setSelectedUser(user);
+    }
+
+    isSelected() {
+        if (this.user === this._userService.selectedUser) {
+            return "selected";
+        }
+        return "";
+    }
+}
