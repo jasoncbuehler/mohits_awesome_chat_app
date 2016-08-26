@@ -14,6 +14,7 @@ var UserService = (function () {
     // https://api.myjson.com/bins/31o4f
     function UserService(_http) {
         var _this = this;
+        this.userInputChange = new core_1.EventEmitter();
         this.loadingUsers = true;
         // TODO - pull this list from file or ultimately myjson
         _http.request('https://api.myjson.com/bins/31o4f')

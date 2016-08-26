@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Chat } from "./chat";
+import {ChatService} from "./chat.service";
+import {UserService} from "../user/user.service";
 
 @Component({
     selector: 'chat-component',
@@ -11,6 +13,9 @@ import { Chat } from "./chat";
 export class ChatComponent {
     @Input() chat: Chat;
 
-    constructor() {
+    constructor(private _userService: UserService, private _chatService: ChatService) {
+        //_chatService.chatCreated.subscribe((message) => {
+        //    this.chat.text = message;
+        //});
     }
 }

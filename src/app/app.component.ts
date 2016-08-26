@@ -32,7 +32,7 @@ import {ChatService} from "./chat/chat.service";
         <div class="form-group">
             <div class="input-group">
                 <input #messageInput type="text" class="form-control" placeholder="Say 'yo!'"
-                    (keyup)="addMessageFromEnterKey($event,messageInput)">
+                    (keyup)="addMessageFromEnterKey($event,messageInput)" (input)="userService.userInputChange.emit($event)">
                 <span class="input-group-btn">
                     <input type="button" class="btn btn-success pull-right" value="YO!"
                     (click)="addMessage(messageInput)">
@@ -55,9 +55,8 @@ export class AppComponent {
     }
 
     addMessage(messageInput: HTMLInputElement) {
-        this.chatService.addChat(messageInput.value, this.userService.selectedUser);
+        this.chatService.chatCreated.emit(messageInput.value);
         messageInput.value = "";
-
     }
 
     addMessageFromEnterKey(event: any, messageInput: HTMLInputElement) {

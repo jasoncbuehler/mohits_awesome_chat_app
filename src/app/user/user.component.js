@@ -10,9 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var user_1 = require("./user");
 var user_service_1 = require("./user.service");
+var chat_service_1 = require("../chat/chat.service");
 var UserComponent = (function () {
-    function UserComponent(_userService) {
+    function UserComponent(_userService, _chatService) {
+        var _this = this;
         this._userService = _userService;
+        this._chatService = _chatService;
+        _userService.userInputChange.subscribe(function (event) {
+            if (_this.isSelected() === "selected") {
+                _this.isTyping = "typing";
+            }
+        });
+        _chatService.chatCreated.subscribe(function () { return _this.isTyping = ""; });
     }
     UserComponent.prototype.setSelectedUser = function (user) {
         this._userService.setSelectedUser(user);
@@ -27,12 +36,16 @@ var UserComponent = (function () {
         core_1.Input(), 
         __metadata('design:type', user_1.User)
     ], UserComponent.prototype, "user", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], UserComponent.prototype, "isTyping", void 0);
     UserComponent = __decorate([
         core_1.Component({
             selector: 'user-component',
-            template: "\n    <div (click)=\"setSelectedUser(user)\" class=\"listed-user {{isSelected()}}\">{{user.name}}</div>\n    "
+            template: "\n    <div (click)=\"setSelectedUser(user)\" class=\"listed-user {{isSelected()}}\">{{user.name}} <i>{{isTyping}}</i></div>\n    "
         }), 
-        __metadata('design:paramtypes', [user_service_1.UserService])
+        __metadata('design:paramtypes', [user_service_1.UserService, chat_service_1.ChatService])
     ], UserComponent);
     return UserComponent;
 })();

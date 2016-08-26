@@ -1,5 +1,5 @@
 import { User } from './user';
-import {Injectable} from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Http, Response} from '@angular/http';
 
 @Injectable()
@@ -8,6 +8,8 @@ export class UserService {
 
     selectedUser: User;
     loadingUsers: boolean;
+
+    userInputChange: EventEmitter<any> = new EventEmitter();
 
     // json located at:
     // https://api.myjson.com/bins/31o4f
