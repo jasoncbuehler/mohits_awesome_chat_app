@@ -5,7 +5,10 @@ import {UserService} from "./user.service";
 @Component({
     selector: 'user-component',
     template: `
-    <div (click)="setSelectedUser(user)" class="listed-user {{isSelected()}}">{{user.name}}</div>
+    <div (click)="setSelectedUser(user)" class="listed-user {{isSelected()}}">
+        {{user.name}}
+        <div *ngIf="_userService.isTyping && isSelected()">is typing</div>
+    </div>
     `
 })
 

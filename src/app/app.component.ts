@@ -20,6 +20,7 @@ import {ChatService} from "./chat/chat.service";
             <tr>
                 <td>
                     <chat-component *ngFor="let chat of chatService.chats" [chat]="chat"></chat-component>
+                    <div *ngIf="chatService.isTyping">{{userService.selectedUser.name}} is typing...</div>
                 </td>
                 <td>
                     <div *ngIf="userService.loadingUsers">Loading...</div>
@@ -32,7 +33,8 @@ import {ChatService} from "./chat/chat.service";
         <div class="form-group">
             <div class="input-group">
                 <input #messageInput type="text" class="form-control" placeholder="Say 'yo!'"
-                    (keyup)="addMessageFromEnterKey($event,messageInput)">
+                    (keyup.enter)="addMessageFromEnterKey($event,messageInput)"
+                    (keyup)="checkIfTyping(messageInput)">
                 <span class="input-group-btn">
                     <input type="button" class="btn btn-success pull-right" value="YO!"
                     (click)="addMessage(messageInput)">
@@ -63,6 +65,16 @@ export class AppComponent {
     addMessageFromEnterKey(event: any, messageInput: HTMLInputElement) {
         if (event.which === 13) {
             this.addMessage(messageInput);
+        }
+    }
+
+    checkIfTyping(messageInput: HTMLInputElement): void {
+        if (messageInput.value.length > 0) {
+            this.chatService.setIsTyping(true);
+            this.userService.setIsTyping(true);
+        } else {
+            this.chatService.setIsTyping(false);
+            this.userService.setIsTyping(false);
         }
     }
 }

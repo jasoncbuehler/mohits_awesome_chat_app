@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -30,11 +31,11 @@ var UserComponent = (function () {
     UserComponent = __decorate([
         core_1.Component({
             selector: 'user-component',
-            template: "\n    <div (click)=\"setSelectedUser(user)\" class=\"listed-user {{isSelected()}}\">{{user.name}}</div>\n    "
+            template: "\n    <div (click)=\"setSelectedUser(user)\" class=\"listed-user {{isSelected()}}\">\n        {{user.name}}\n        <div *ngIf=\"_userService.isTyping && isSelected()\">is typing</div>\n    </div>\n    "
         }), 
         __metadata('design:paramtypes', [user_service_1.UserService])
     ], UserComponent);
     return UserComponent;
-})();
+}());
 exports.UserComponent = UserComponent;
 //# sourceMappingURL=user.component.js.map

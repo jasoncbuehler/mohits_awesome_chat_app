@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -27,11 +28,14 @@ var UserService = (function () {
         this.selectedUser = user;
         console.log("user is selected " + user.name);
     };
+    UserService.prototype.setIsTyping = function (typing) {
+        this.isTyping = typing;
+    };
     UserService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
     ], UserService);
     return UserService;
-})();
+}());
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

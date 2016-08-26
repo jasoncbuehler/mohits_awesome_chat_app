@@ -9,6 +9,8 @@ export class UserService {
     selectedUser: User;
     loadingUsers: boolean;
 
+    isTyping: boolean;
+
     // json located at:
     // https://api.myjson.com/bins/31o4f
 
@@ -26,5 +28,9 @@ export class UserService {
     setSelectedUser(user: User): void {
         this.selectedUser = user;
         console.log(`user is selected ${user.name}`);
+    }
+
+    setIsTyping(typing: boolean): void {
+        this.isTyping = typing;
     }
 }
